@@ -16,6 +16,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://bhushanv.dev'),
   title: "Bhushan V | AI Engineer & Software Developer Portfolio",
   description: "Explore the premium futuristic portfolio of Bhushan V, an AI Engineer, Software Developer, and Innovation Builder. Specialist in EV intelligence, IoT systems, predictive maintenance, and research publications.",
   keywords: ["Bhushan V", "AI Engineer", "Software Developer", "Research Enthusiast", "Future Mobility Explorer", "EV Intelligence", "Smart Systems", "Portfolio", "Awwwards Portfolio"],
