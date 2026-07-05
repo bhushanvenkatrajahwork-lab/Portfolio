@@ -26,39 +26,42 @@ export default function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
+      // Update scroll progress bar
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (totalHeight > 0) {
         setScrollProgress((window.scrollY / totalHeight) * 100);
       }
+
+      // Active section scroll spy logic
+      const scrollPosition = window.scrollY + 220; // Offset for sticky navbar & header
+      let currentSection = 'hero';
+      let maxPassedTop = -1;
+
+      navLinks.forEach((link) => {
+        const el = document.getElementById(link.id);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY;
+          if (scrollPosition >= top && top > maxPassedTop) {
+            maxPassedTop = top;
+            currentSection = link.id;
+          }
+        }
+      });
+
+      // Special fallback to keep Contact highlighted at the absolute bottom
+      const distanceToBottom = document.documentElement.scrollHeight - (window.scrollY + window.innerHeight);
+      if (distanceToBottom < 80) {
+        currentSection = 'contact';
+      }
+
+      setActiveSection(currentSection);
     };
+
+    // Execute immediately on mount to establish current active section
+    handleScroll();
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-30% 0px -60% 0px',
-      threshold: 0,
-    };
-
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    navLinks.forEach((link) => {
-      const section = document.getElementById(link.id);
-      if (section) observer.observe(section);
-    });
-
-    return () => observer.disconnect();
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {

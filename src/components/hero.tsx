@@ -45,19 +45,31 @@ export default function Hero() {
             Available for Opportunities
           </motion.div>
 
-          {/* Title Name with Cyber Gradient */}
+          {/* Title Name with Glowing & Flowing Gradient */}
           <motion.h1
-            className="text-5xl sm:text-7xl md:text-8xl font-bold font-space tracking-tight bg-gradient-to-r from-electric-blue via-neon-cyan to-neon-purple bg-clip-text text-transparent mb-3 leading-none"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-5xl sm:text-7xl md:text-8xl font-bold font-space tracking-tight bg-gradient-to-r from-electric-blue via-neon-cyan via-neon-purple to-electric-blue bg-[length:200%_auto] bg-clip-text text-transparent mb-3 leading-none drop-shadow-[0_0_12px_rgba(37,99,235,0.18)]"
+            initial={{ opacity: 0, y: 15, backgroundPosition: "0% center" }}
+            animate={{ 
+              opacity: 1, 
+              y: 0,
+              backgroundPosition: ["0% center", "-200% center"]
+            }}
+            transition={{ 
+              opacity: { duration: 0.6, delay: 0.2 },
+              y: { duration: 0.6, delay: 0.2 },
+              backgroundPosition: {
+                repeat: Infinity,
+                duration: 6,
+                ease: "linear"
+              }
+            }}
           >
             BHUSHAN V
           </motion.h1>
 
-          {/* Role Statement */}
+          {/* Role Statement (Darkened for better contrast) */}
           <motion.h2
-            className="text-lg sm:text-2xl md:text-3xl font-space font-medium text-slate-700 dark:text-slate-300 mb-4 tracking-tight"
+            className="text-lg sm:text-2xl md:text-3xl font-space font-semibold text-slate-900 dark:text-slate-100 mb-4 tracking-tight"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -65,9 +77,9 @@ export default function Hero() {
             AI Engineer & Software Developer
           </motion.h2>
 
-          {/* Short Statement */}
+          {/* Short Statement (Darkened for better contrast) */}
           <motion.p
-            className="max-w-2xl text-slate-500 dark:text-slate-400 font-sans text-sm sm:text-base leading-relaxed mb-8"
+            className="max-w-2xl text-slate-700 dark:text-slate-350 font-sans text-sm sm:text-base leading-relaxed mb-8"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -133,44 +145,20 @@ export default function Hero() {
 
         </div>
 
-        {/* Right Column: Profile Image with Futuristic HUD Animations */}
+        {/* Right Column: Clean Profile Image */}
         <motion.div 
           className="lg:col-span-5 flex justify-center items-center order-1 lg:order-2 w-full"
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[350px] aspect-[4/5] flex items-center justify-center">
+          <div className="relative w-full max-w-[190px] sm:max-w-[220px] md:max-w-[250px] aspect-[4/5] flex items-center justify-center">
             
-            {/* 1. Outer Rotating Tech Circle/Ring */}
-            <motion.div 
-              className="absolute inset-[-15px] rounded-full border border-dashed border-blue-500/20 dark:border-blue-400/30 pointer-events-none"
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-            />
-            
-            {/* 2. Secondary Glowing Ambient Tech Ring */}
-            <motion.div 
-              className="absolute inset-[-5px] rounded-full border border-double border-cyan-500/15 dark:border-cyan-400/20 pointer-events-none"
-              animate={{ rotate: -360 }}
-              transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
-            />
-
-            {/* 3. Floating Ambient Glow Background */}
-            <motion.div 
-              className="absolute -inset-4 bg-gradient-to-tr from-blue-500/10 via-cyan-500/10 to-purple-500/10 rounded-[2.5rem] blur-2xl pointer-events-none"
-              animate={{ 
-                scale: [1, 1.04, 1],
-                opacity: [0.5, 0.75, 0.5]
-              }}
-              transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-            />
-
-            {/* 4. Main Photo Container with Floating & Hover Motion */}
+            {/* Main Photo Container with Floating & Hover Motion */}
             <motion.div
-              className="relative w-full h-full rounded-2xl overflow-hidden border border-slate-200/60 shadow-2xl flex items-center justify-center bg-white/40 dark:bg-slate-900/40 p-2 z-10 dark:border-slate-800/60 backdrop-blur-md"
+              className="relative w-full h-full rounded-2xl overflow-hidden z-10 shadow-lg"
               animate={{ 
-                y: [-8, 8, -8],
+                y: [-5, 5, -5],
               }}
               transition={{ 
                 repeat: Infinity,
@@ -178,61 +166,21 @@ export default function Hero() {
                 ease: "easeInOut"
               }}
               whileHover={{ 
-                scale: 1.02,
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15)",
+                scale: 1.03,
+                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
                 transition: { duration: 0.3 }
               }}
             >
-              {/* Image element wrapper */}
-              <div className="relative w-full h-full rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-950">
-                <Image 
-                  src="/profile.jpg"
-                  alt="Bhushan V"
-                  fill
-                  priority
-                  className="object-cover object-top filter grayscale-[10%] hover:grayscale-0 contrast-[1.03] transition-all duration-700 ease-out scale-100 hover:scale-105"
-                  sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 350px"
-                />
-
-                {/* Cyber Scanline Laser Effect */}
-                <motion.div 
-                  className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_8px_rgba(34,211,238,0.8)] z-20 pointer-events-none"
-                  animate={{ 
-                    top: ["0%", "100%", "0%"]
-                  }}
-                  transition={{ 
-                    repeat: Infinity,
-                    duration: 5,
-                    ease: "easeInOut"
-                  }}
-                />
-
-                {/* Dark Vignette Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent pointer-events-none" />
-              </div>
-
-              {/* 5. Holographic Corner Brackets (HUD overlay) */}
-              <span className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-cyan-500/70 z-20 rounded-tl-sm pointer-events-none" />
-              <span className="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-cyan-500/70 z-20 rounded-tr-sm pointer-events-none" />
-              <span className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-cyan-500/70 z-20 rounded-bl-sm pointer-events-none" />
-              <span className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-cyan-500/70 z-20 rounded-br-sm pointer-events-none" />
-
-              {/* 6. Scientific HUD Text Indicators inside frame */}
-              <div className="absolute bottom-5 left-5 z-20 font-space text-[9px] tracking-wider text-cyan-500 bg-slate-950/80 px-2 py-0.5 rounded border border-cyan-500/30 backdrop-blur-sm flex items-center gap-1.5 uppercase font-medium select-none pointer-events-none">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                <span>SYS_STAT: ACTIVE</span>
-              </div>
-
-              <div className="absolute top-5 right-5 z-20 font-space text-[9px] tracking-wider text-slate-300 bg-slate-950/80 px-2 py-0.5 rounded border border-slate-500/30 backdrop-blur-sm uppercase font-medium select-none pointer-events-none">
-                LOC: IND
-              </div>
+              {/* Image element */}
+              <Image 
+                src="/profile.jpg"
+                alt="Bhushan V"
+                fill
+                priority
+                className="object-cover object-top filter contrast-[1.01] transition-all duration-700 ease-out scale-100 hover:scale-105 rounded-2xl"
+                sizes="(max-width: 640px) 190px, (max-width: 768px) 220px, 250px"
+              />
             </motion.div>
-
-            {/* Extra Outer Tech HUD Accent lines */}
-            <div className="absolute -top-3 -left-3 w-8 h-[1px] bg-gradient-to-r from-cyan-500/40 to-transparent pointer-events-none" />
-            <div className="absolute -top-3 -left-3 w-[1px] h-8 bg-gradient-to-b from-cyan-500/40 to-transparent pointer-events-none" />
-            <div className="absolute -bottom-3 -right-3 w-8 h-[1px] bg-gradient-to-l from-purple-500/40 to-transparent pointer-events-none" />
-            <div className="absolute -bottom-3 -right-3 w-[1px] h-8 bg-gradient-to-t from-purple-500/40 to-transparent pointer-events-none" />
 
           </div>
         </motion.div>
